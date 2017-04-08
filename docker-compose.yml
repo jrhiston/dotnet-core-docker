@@ -16,6 +16,7 @@ services:
       - aspnetcoreapp-network
     depends_on:
       - "web_app"
+
   web_app:
     container_name: "web_app"
     build: 
@@ -29,11 +30,12 @@ services:
       - "mysql"
     networks:
       - aspnetcoreapp-network
+
   mysql:
     container_name: "web_app_mysql"
     image: mysql:latest
-    expose:
-      - 3306
+    ports:
+      - "3306:3306"
     volumes:
       - ./mysql/data:/var/lib/mysql
     environment:
