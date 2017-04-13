@@ -30,7 +30,19 @@ services:
       - "mysql"
     networks:
       - aspnetcoreapp-network
-
+  
+  redis:
+    container_name: "web_app_redis"
+    image: redis:alpine
+    volumes:
+      - ./redis/data:/data
+    ports:
+      - "6379:6379"
+    depends_on:
+      - "mysql"
+    networks:
+      - aspnetcoreapp-network
+    
   mysql:
     container_name: "web_app_mysql"
     image: mysql:latest
